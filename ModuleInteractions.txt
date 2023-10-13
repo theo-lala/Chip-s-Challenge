@@ -1,0 +1,46 @@
+How different modules in our project currently interact:
+
+
+App :
+Author : Oshi Werellagama
+
+App.java -> Domain.java  
+Lines 224 - 225 App gets totalTreasure from Domain to display the chips left
+
+App.java -> Recorder.java
+at line 308 when the save button is pressed from the App, the Recorder method saveToFile is called
+
+Domain : 
+Author : James Goode
+
+Domain.java -> Persistency.java
+
+at Line 37 in "persistency.getLevel( level )" 
+
+set's the level used by Domain. 
+
+Recorder :
+Brodie Banfield
+
+Recorder.java -> App.java
+
+The Recorder module includes a method called storedMovesMade, which spans lines 77 to 86 in the code. The interaction is with the App module where there is a key listener that records key presses and associates them with corresponding moves. These recorded moves are stored in the storedMoves list in Recorder with the move direction and timestamp at which they were recorded. 
+
+Renderer :
+Theo Lala
+
+Renderer.java -> Domain.java
+
+The constructor of the renderer requires Domain as its parameter (at line 48). The board that is used in the Renderer is passed from Domain and used throughout the class, for example in
+method repaint() from line 63 - 114.
+
+Persistency :
+Author : Jake Domb
+
+Persistency.java -> Domain.java
+
+Lines 79 - 99:
+    The Domain module is called to create a build the Tile subclasses.
+
+Line 190:
+    The Domain module is again called, thise time I create a Coordinate object from the Domain module.
